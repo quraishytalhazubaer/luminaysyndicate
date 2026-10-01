@@ -24,37 +24,20 @@ export default function EventsSection() {
   ];
 
   return (
-    <section id="events" className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-xl mx-auto space-y-2 mb-12">
-          <span className="text-xs font-bold text-sky-600 uppercase tracking-widest">Get Connected</span>
-          <h2 className="text-3xl font-extrabold text-slate-900">Upcoming Events & Gatherings</h2>
+    <section id="events" className="events-section">
+      <div className="site-container">
+        <div className="section-heading events-heading">
+          <div><p className="eyebrow"><span className="eyebrow-rule" />Connect with us</p><h2>Ideas become action together.</h2></div>
+          <p className="section-lede">Join the conversations and community moments moving our work forward.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="events-list">
           {events.map((evt) => (
-            <div key={evt.id} className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-md flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="px-2.5 py-1 rounded bg-sky-50 text-sky-700 text-[10px] font-bold uppercase tracking-wider">
-                    {evt.tag}
-                  </span>
-                  <span className="text-xs font-extrabold text-amber-600">{evt.date}</span>
-                </div>
-                <h3 className="text-lg font-bold text-slate-900">{evt.title}</h3>
-                <p className="text-xs text-slate-500">{evt.time} • {evt.location}</p>
-              </div>
-
-              <button
-                onClick={() => {
-                  setSelectedEvent(evt);
-                  setRsvpSubmitted(false);
-                }}
-                className="w-full py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-colors"
-              >
-                RSVP Registration
-              </button>
-            </div>
+            <article key={evt.id} className="event-row">
+              <div className="event-date"><span>{evt.date.split(' ')[0]}</span><strong>{evt.date.split(' ')[1].replace(',', '')}</strong></div>
+              <div className="event-details"><span className="event-tag">{evt.tag}</span><h3>{evt.title}</h3><p>{evt.time} <span aria-hidden="true">·</span> {evt.location}</p></div>
+              <button onClick={() => { setSelectedEvent(evt); setRsvpSubmitted(false); }} className="event-action">Register <span aria-hidden="true">↗</span></button>
+            </article>
           ))}
         </div>
       </div>
